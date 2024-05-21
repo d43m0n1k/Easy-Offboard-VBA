@@ -1,0 +1,103 @@
+readme.txt
+
+Offboarding Email Automation
+
+This project provides a VBA script to automate sending offboarding emails using Microsoft Word, Access, and Outlook. The script allows you to select specific records from an Access database, specify whether the offboarding is voluntary or involuntary, and send customized emails accordingly.
+Prerequisites
+
+    Microsoft Office (Word, Access, Outlook)
+    Basic knowledge of navigating and using these applications
+
+Setup Instructions
+1. Setting Up the Access Database
+
+    Open Microsoft Access:
+        Launch Microsoft Access on your computer.
+
+    Create a New Database:
+        Select File > New > Blank Database.
+        Enter a name for your database and click Create.
+
+    Create a New Table:
+        In the new database, go to the Table tab.
+        Click Table Design.
+
+    Add Fields to the Table:
+        Create the following fields:
+            main_email (Short Text)
+            software (Short Text)
+            cc_email (Short Text)
+
+    Save the Table:
+        Click Save, name the table (e.g., OffboardingContacts), and click OK.
+
+    Enter Data:
+        Enter your data into the table. Each row should contain the main email address, software name, and optional CC email addresses.
+        Example Data Entry:
+
+        sql
+
+        main_email         | software  | cc_email
+        ------------------------------------------------
+        adobeadmins@job.com| adobe     |
+        crmadmins@job.com  | crm       |
+        zoomadmins@job.com | zoom      |
+        hradmins@job.com   | hris      | hradmins2@job.com
+
+2. Setting Up the Word Document
+
+    Open Microsoft Word:
+        Launch Microsoft Word on your computer.
+
+    Create a New Document:
+        Select File > New > Blank Document.
+
+    Set Up Mail Merge:
+        Go to the Mailings tab.
+        Select Start Mail Merge > E-Mail Messages.
+        Click Select Recipients > Use an Existing List and connect to your Access database.
+        Navigate to your Access database file and open it.
+        Select the table you created (e.g., OffboardingContacts) and click OK.
+
+3. Inserting Mail Merge Fields (Optional)
+
+    Insert Fields:
+        In the Mailings tab, click Insert Merge Field and select the fields (main_email, software, cc_email) to visually preview them in your document.
+
+4. Adding the VBA Script
+
+    Open VBA Editor:
+        Press Alt + F11 to open the VBA editor in Word.
+
+    Insert a New Module:
+        Click Insert > Module to create a new module.
+
+    !!Paste the VBA Script in here!!
+
+    Save the Module:
+        Click File > Save to save the module.
+
+    Close the VBA Editor:
+        Close the VBA editor by clicking the X button or pressing Alt + Q.
+
+5. Running the VBA Script
+
+    Open the Macros Dialog:
+        In Word, press Alt + F8 to open the Macros dialog box.
+
+    Select and Run the Macro:
+        Select MailMergeWithCC from the list of macros and click Run.
+
+    Follow the Prompts:
+        Enter the user's name, email, offboarding date, and time when prompted.
+        Enter V for voluntary or I for involuntary when prompted.
+        Enter the record numbers to include (comma-separated, e.g., 1,3,5).
+            Example: If you want to send emails to crmadmins@job.com and hradmins@job.com with hradmins2@job.com in CC, you would enter 2,4.
+
+    Emails Sent:
+        The script will send emails based on the selected records and offboarding type. If the offboarding is involuntary, the email will be marked as high importance.
+
+Notes:
+
+    The script will only process the records you specify.
+    Ensure that Outlook is configured and running on your computer to send emails.
